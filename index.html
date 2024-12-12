@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facts Explorer App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        nav {
+            margin: 1rem 0;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #facts-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .fact-card {
+            background-color: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Facts Explorer</h1>
+        <nav>
+            <button onclick="showCategory('space')">Space Facts</button>
+            <button onclick="showCategory('indian')">Indian Facts</button>
+        </nav>
+    </header>
+    <main>
+        <section id="facts-container">
+            <!-- Facts will be dynamically inserted here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Facts Explorer App</p>
+    </footer>
+
+    <script>
+        const factsData = {
+            space: {
+                "spaceFacts": [
+                    // Your existing space facts here
+                ]
+            },
+            indian: {
+                "indianFacts": [
+                    {
+                        "id": 1,
+                        "fact": "India is home to over 1,600 languages, with 22 official languages recognized by the government"
+                    },
+                    {
+                        "id": 2,
+                        "fact": "Chess was invented in India around the 6th century AD, originally called 'Chaturanga'"
+                    },
+                    {
+                        "id": 3,
+                        "fact": "India has the world's largest postal network with over 155,000 post offices"
+                    },
+                    {
+                        "id": 4,
+                        "fact": "The ancient Indian practice of Yoga dates back over 5,000 years"
+                    },
+                    {
+                        "id": 5,
+                        "fact": "India was the first country to mine diamonds, with the practice beginning around 800 BCE"
+                    },
+                    {
+                        "id": 6,
+                        "fact": "The world's largest film industry by number of films produced is in India (Bollywood)"
+                    },
+                    {
+                        "id": 7,
+                        "fact": "Zero was invented in India by mathematician Aryabhata"
+                    },
+                    {
+                        "id": 8,
+                        "fact": "India has the world's largest railway network by passenger volume"
+                    },
+                    {
+                        "id": 9,
+                        "fact": "The Taj Mahal took 22 years to complete, from 1632 to 1653"
+                    },
+                    {
+                        "id": 10,
+                        "fact": "India is the world's largest democracy by population"
+                    },
+                    {
+                        "id": 11,
+                        "fact": "Sanskrit is considered the oldest language in the world still in use"
+                    },
+                    {
+                        "id": 12,
+                        "fact": "The game of Snakes and Ladders originated in India, known as 'Mokshapat'"
+                    },
+                    {
+                        "id": 13,
+                        "fact": "India has the world's largest film school - the Film and Television Institute of India"
+                    },
+                    {
+                        "id": 14,
+                        "fact": "The ancient Indian university Takshashila (now Taxila) was the world's first university"
+                    },
+                    {
+                        "id": 15,
+                        "fact": "India is the world's largest producer and consumer of spices"
+                    },
+                    {
+                        "id": 16,
+                        "fact": "The art of Navigation was born in the river Sindh over 6000 years ago"
+                    },
+                    {
+                        "id": 17,
+                        "fact": "Ayurveda is the earliest school of medicine known to humanity"
+                    },
+                    {
+                        "id": 18,
+                        "fact": "India has the largest number of vegetarians in the world"
+                    },
+                    {
+                        "id": 19,
+                        "fact": "The world's first granite temple is the Brihadeswara Temple in Tamil Nadu"
+                    },
+                    {
+                        "id": 20,
+                        "fact": "India was one of the richest countries until the British invasion in the early 17th century"
+                    }
+                ]
+            }
+        };
+
+        function showCategory(category) {
+            const container = document.getElementById('facts-container');
+            container.innerHTML = ''; // Clear current content
+            
+            const facts = factsData[category][`${category}Facts`];
+            
+            facts.forEach(fact => {
+                const factCard = document.createElement('div');
+                factCard.className = 'fact-card';
+                factCard.innerHTML = `
+                    <h3>Fact #${fact.id}</h3>
+                    <p>${fact.fact}</p>
+                `;
+                container.appendChild(factCard);
+            });
+        }
+
+        // Show space facts by default when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            showCategory('indian');
+        });
+    </script>
+</body>
+</html>
