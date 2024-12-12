@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facts Explorer App</title>
+    <title>Space Facts Viewer</title>
     <style>
         * {
             margin: 0;
@@ -13,195 +13,156 @@
 
         body {
             font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        header {
-            background-color: #333;
+            background-color: #1a1a2e;
             color: white;
-            text-align: center;
-            padding: 1rem;
         }
 
-        nav {
-            margin: 1rem 0;
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .fact-container {
+            background-color: #16213e;
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        #fact-text {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         button {
-            padding: 0.5rem 1rem;
-            margin: 0 0.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            background-color: #4CAF50;
+            background-color: #e94560;
             color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
         }
 
         button:hover {
-            background-color: #45a049;
-        }
-
-        #facts-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .fact-card {
-            background-color: white;
-            padding: 1rem;
-            margin: 1rem 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        footer {
-            text-align: center;
-            padding: 1rem;
-            background-color: #333;
-            color: white;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+            background-color: #ff6b6b;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Facts Explorer</h1>
-        <nav>
-            <button onclick="showCategory('space')">Space Facts</button>
-            <button onclick="showCategory('indian')">Indian Facts</button>
-        </nav>
-    </header>
-    <main>
-        <section id="facts-container">
-            <!-- Facts will be dynamically inserted here -->
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2023 Facts Explorer App</p>
-    </footer>
+    <div class="container">
+        <h1>Space Facts Viewer</h1>
+        <div class="fact-container">
+            <p id="fact-text">Click the button to see a space fact!</p>
+            <button id="next-fact">Next Fact</button>
+        </div>
+    </div>
 
     <script>
-        const factsData = {
-            space: {
-                "spaceFacts": [
-                    {
-                        "id": 1,
-                        "fact": "One day on Venus is longer than one year on Earth. Venus takes 243 Earth days to rotate on its axis."
-                    },
-                    // Add the rest of your space facts here
-                ]
-            },
-            indian: {
-                "indianFacts": [
-                    {
-                        "id": 1,
-                        "fact": "India is home to over 1,600 languages, with 22 official languages recognized by the government"
-                    },
-                    {
-                        "id": 2,
-                        "fact": "Chess was invented in India around the 6th century AD, originally called 'Chaturanga'"
-                    },
-                    {
-                        "id": 3,
-                        "fact": "India has the world's largest postal network with over 155,000 post offices"
-                    },
-                    {
-                        "id": 4,
-                        "fact": "The ancient Indian practice of Yoga dates back over 5,000 years"
-                    },
-                    {
-                        "id": 5,
-                        "fact": "India was the first country to mine diamonds, with the practice beginning around 800 BCE"
-                    },
-                    {
-                        "id": 6,
-                        "fact": "The world's largest film industry by number of films produced is in India (Bollywood)"
-                    },
-                    {
-                        "id": 7,
-                        "fact": "Zero was invented in India by mathematician Aryabhata"
-                    },
-                    {
-                        "id": 8,
-                        "fact": "India has the world's largest railway network by passenger volume"
-                    },
-                    {
-                        "id": 9,
-                        "fact": "The Taj Mahal took 22 years to complete, from 1632 to 1653"
-                    },
-                    {
-                        "id": 10,
-                        "fact": "India is the world's largest democracy by population"
-                    },
-                    {
-                        "id": 11,
-                        "fact": "Sanskrit is considered the oldest language in the world still in use"
-                    },
-                    {
-                        "id": 12,
-                        "fact": "The game of Snakes and Ladders originated in India, known as 'Mokshapat'"
-                    },
-                    {
-                        "id": 13,
-                        "fact": "India has the world's largest film school - the Film and Television Institute of India"
-                    },
-                    {
-                        "id": 14,
-                        "fact": "The ancient Indian university Takshashila (now Taxila) was the world's first university"
-                    },
-                    {
-                        "id": 15,
-                        "fact": "India is the world's largest producer and consumer of spices"
-                    },
-                    {
-                        "id": 16,
-                        "fact": "The art of Navigation was born in the river Sindh over 6000 years ago"
-                    },
-                    {
-                        "id": 17,
-                        "fact": "Ayurveda is the earliest school of medicine known to humanity"
-                    },
-                    {
-                        "id": 18,
-                        "fact": "India has the largest number of vegetarians in the world"
-                    },
-                    {
-                        "id": 19,
-                        "fact": "The world's first granite temple is the Brihadeswara Temple in Tamil Nadu"
-                    },
-                    {
-                        "id": 20,
-                        "fact": "India was one of the richest countries until the British invasion in the early 17th century"
-                    }
-                ]
-            }
+        const spaceFacts = {
+            "spaceFacts": [
+                {
+                    "id": 1,
+                    "fact": "One day on Venus is longer than one year on Venus. Venus takes 243 Earth days to rotate on its axis but only 225 Earth days to orbit the Sun."
+                },
+                {
+                    "id": 2,
+                    "fact": "The Sun makes up 99.86% of the mass in our solar system."
+                },
+                {
+                    "id": 3,
+                    "fact": "The biggest known star, UY Scuti, is so large that it would take 1,700 years to walk around it at walking speed."
+                },
+                {
+                    "id": 4,
+                    "fact": "There are more stars in the universe than grains of sand on Earth."
+                },
+                {
+                    "id": 5,
+                    "fact": "The footprints left by Apollo astronauts on the Moon will last for at least 100 million years."
+                },
+                {
+                    "id": 6,
+                    "fact": "The Great Red Spot on Jupiter has been raging for at least 400 years."
+                },
+                {
+                    "id": 7,
+                    "fact": "Light from the Sun takes approximately 8 minutes and 20 seconds to reach Earth."
+                },
+                {
+                    "id": 8,
+                    "fact": "Saturn's moon Titan has liquid methane lakes and seas on its surface."
+                },
+                {
+                    "id": 9,
+                    "fact": "A year on Mercury is just 88 Earth days long."
+                },
+                {
+                    "id": 10,
+                    "fact": "The Hubble Space Telescope orbits Earth at a speed of about 17,000 mph."
+                },
+                {
+                    "id": 11,
+                    "fact": "Neutron stars can spin up to 600 times per second."
+                },
+                {
+                    "id": 12,
+                    "fact": "The largest known galaxy, IC 1101, is 50 times the size of our Milky Way."
+                },
+                {
+                    "id": 13,
+                    "fact": "There are more trees on Earth than stars in the Milky Way galaxy."
+                },
+                {
+                    "id": 14,
+                    "fact": "A black hole's gravitational pull is so strong that even light cannot escape it."
+                },
+                {
+                    "id": 15,
+                    "fact": "The International Space Station travels at a speed of about 17,500 miles per hour."
+                },
+                {
+                    "id": 16,
+                    "fact": "Mars' sunset appears blue due to the way dust in its atmosphere scatters light."
+                },
+                {
+                    "id": 17,
+                    "fact": "The smallest known star is EBLM J0555-57Ab, about the size of Saturn."
+                },
+                {
+                    "id": 18,
+                    "fact": "There is a planet made largely of diamonds, called 55 Cancri e."
+                },
+                {
+                    "id": 19,
+                    "fact": "The Milky Way galaxy is moving through space at approximately 1.3 million miles per hour."
+                },
+                {
+                    "id": 20,
+                    "fact": "Astronauts grow approximately two inches taller while in space due to the lack of gravity."
+                }
+            ]
         };
 
-        function showCategory(category) {
-            const container = document.getElementById('facts-container');
-            container.innerHTML = ''; // Clear current content
-            
-            const facts = factsData[category][`${category}Facts`];
-            
-            facts.forEach(fact => {
-                const factCard = document.createElement('div');
-                factCard.className = 'fact-card';
-                factCard.innerHTML = `
-                    <h3>Fact #${fact.id}</h3>
-                    <p>${fact.fact}</p>
-                `;
-                container.appendChild(factCard);
-            });
+        let currentFactIndex = 0;
+        const factText = document.getElementById('fact-text');
+        const nextFactButton = document.getElementById('next-fact');
+
+        function displayFact(index) {
+            factText.textContent = spaceFacts.spaceFacts[index].fact;
         }
 
-        // Show Indian facts by default when page loads
-        document.addEventListener('DOMContentLoaded', () => {
-            showCategory('indian');
+        nextFactButton.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex + 1) % spaceFacts.spaceFacts.length;
+            displayFact(currentFactIndex);
         });
+
+        // Display first fact on load
+        displayFact(0);
     </script>
 </body>
 </html>
